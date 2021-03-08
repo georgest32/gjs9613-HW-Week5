@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    public float forceAmount = 7;  //public var for force amount
+    public float forceAmount = 10;  //public var for force amount
 
     Rigidbody2D rb2D; //var for the Rigidbody2D
 
