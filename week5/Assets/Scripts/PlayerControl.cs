@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    public float forceAmount = 5;  //public var for force amount
+    public float forceAmount = 7;  //public var for force amount
 
     Rigidbody2D rb2D; //var for the Rigidbody2D
 
@@ -38,20 +38,25 @@ public class PlayerControl : MonoBehaviour
         {
             rb2D.AddForce(Vector2.up * forceAmount); //apply to the up mult by the "force" var
         }
-
+        
         if (Input.GetKey(KeyCode.S)) //if S is pressed
         {
             rb2D.AddForce(Vector2.down * forceAmount); //apply to the up mult by the "force" var
         }
-
+        
         if (Input.GetKey(KeyCode.A)) //if A is pressed
         {
             rb2D.AddForce(Vector2.left * forceAmount); //apply to the up mult by the "force" var
         }
-
+        
         if (Input.GetKey(KeyCode.D)) //if D is pressed
         {
             rb2D.AddForce(Vector2.right * forceAmount); //apply to the up mult by the "force" var
+        }
+
+        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
+        {
+            rb2D.velocity = Vector2.zero;
         }
 
         if (Input.GetKey(KeyCode.Tab))

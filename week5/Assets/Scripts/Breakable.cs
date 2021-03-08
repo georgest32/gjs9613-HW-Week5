@@ -21,7 +21,7 @@ public class Breakable : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GetComponent<SpriteRenderer>().color = Color.red;
+            GetComponent<SpriteRenderer>().color = Color.cyan;
             
             if (Input.GetKeyDown(KeyCode.Space) && GameManager.instance.PupCount > 0)
             {

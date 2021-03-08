@@ -167,9 +167,9 @@ public class ASCIILevelLoader : MonoBehaviour
             }
         }
 
-        if (GameManager.instance.PupCount < 3)
+        if (GameManager.instance.PupCount < 2)
         {
-            GameManager.instance.PupCount = 3;
+            GameManager.instance.PupCount = 2;
         }
     }
 
