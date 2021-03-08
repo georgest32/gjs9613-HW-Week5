@@ -59,6 +59,7 @@ public class PlayerControl : MonoBehaviour
             rb2D.velocity = Vector2.zero;
         }
 
+        //show map view and return to normal
         if (Input.GetKey(KeyCode.Tab))
         {
             GetComponentInChildren<Camera>().transform.position =
