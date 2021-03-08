@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance; //this static var will hold the Singleton
     public Text pupText;
     public Text scoreText;
+    public Text timerText;
+
+    public GameObject gameOverPanel;
+
+    public float timeElapsed = 0;
     
     int currentLevel = 0;
     
@@ -63,7 +68,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeElapsed += Time.deltaTime;
+        
         scoreText.text = "Score: " + _score;
         pupText.text = "Pups: " + _pupCount;
+        timerText.text = (30 - (int)timeElapsed).ToString();
+
+        if (timeElapsed >= 30)
+        {
+            gameOverPanel.SetActive(true);
+        }
     }
 }
