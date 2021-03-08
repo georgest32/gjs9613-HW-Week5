@@ -21,7 +21,14 @@ public class Pup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerControl.instance.PupCount++;
+            GameManager.instance.PupCount++;
+            GameManager.instance.Score++;
+
+            if (GameObject.FindObjectsOfType<Pup>().Length <= 1)
+            {
+                GameManager.instance.GetComponent<ASCIILevelLoader>().LoadLevel();
+            }
+            
             Destroy(gameObject);
         }
     }

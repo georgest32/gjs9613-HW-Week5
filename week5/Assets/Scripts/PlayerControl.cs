@@ -5,21 +5,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     public float forceAmount = 5;  //public var for force amount
-    private int _pupCount = 3;
 
-    public int PupCount
-    {
-        get
-        {
-            return _pupCount;
-        }
-
-        set
-        {
-            _pupCount = value;
-        }
-    }
-    
     Rigidbody2D rb2D; //var for the Rigidbody2D
 
     //static variable means the value is the same for all the objects of this class type and the class itself
@@ -34,7 +20,7 @@ public class PlayerControl : MonoBehaviour
         }
         else //if the instance is already set to an object
         {
-            Destroy(gameObject);  //destroy this new object, so there is only ever one
+            //Destroy(gameObject);  //destroy this new object, so there is only ever one
         }
     }
 
@@ -67,7 +53,16 @@ public class PlayerControl : MonoBehaviour
         {
             rb2D.AddForce(Vector2.right * forceAmount); //apply to the up mult by the "force" var
         }
-        
-        
+
+        if (Input.GetKey(KeyCode.Tab))
+        {
+            GetComponentInChildren<Camera>().transform.position =
+                new Vector3(GetComponentInChildren<Camera>().transform.position.x, -22.3f, -48.75f);
+        } 
+        else if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            GetComponentInChildren<Camera>().transform.localPosition =
+                new Vector3(0, 1, -10);
+        }
     }
 }

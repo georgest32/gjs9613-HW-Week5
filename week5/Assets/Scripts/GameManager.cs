@@ -9,8 +9,38 @@ public class GameManager : MonoBehaviour
     //static variable means the value is the same for all the objects of this class type and the class itself
     public static GameManager instance; //this static var will hold the Singleton
     public Text pupText;
+    public Text scoreText;
     
     int currentLevel = 0;
+    
+    private int _score = 0;
+
+    public int Score
+    {
+        get
+        {
+            return _score;
+        } 
+        set
+        {
+            _score = value;
+        }
+    }
+
+    private int _pupCount = 3;
+
+    public int PupCount
+    {
+        get
+        {
+            return _pupCount;
+        }
+
+        set
+        {
+            _pupCount = value;
+        }
+    }
 
     void Awake()
     {
@@ -33,6 +63,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pupText.text = "Pups: " + PlayerControl.instance.PupCount;
+        scoreText.text = "Score: " + _score;
+        pupText.text = "Pups: " + _pupCount;
     }
 }

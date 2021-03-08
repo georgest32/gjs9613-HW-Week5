@@ -21,11 +21,18 @@ public class Breakable : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (Input.GetKeyDown(KeyCode.Space) && PlayerControl.instance.PupCount > 0)
+            GetComponent<SpriteRenderer>().color = Color.red;
+            
+            if (Input.GetKeyDown(KeyCode.Space) && GameManager.instance.PupCount > 0)
             {
-                PlayerControl.instance.PupCount--;
+                GameManager.instance.PupCount--;
                 Destroy(gameObject);
             }
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        GetComponent<SpriteRenderer>().color = new Color32(142, 89, 60, 255);
     }
 }

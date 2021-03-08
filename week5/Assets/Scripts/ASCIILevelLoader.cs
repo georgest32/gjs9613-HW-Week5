@@ -61,6 +61,7 @@ public class ASCIILevelLoader : MonoBehaviour
     {
         Destroy(level);
         level = new GameObject("Level");
+        
         string[] current_file_paths = new string[10];
         List<string[]> allFileLines = new List<string[]>();
 
@@ -164,6 +165,11 @@ public class ASCIILevelLoader : MonoBehaviour
             {
                 Instantiate<GameObject>(pup, pupSpawnPoints[i].transform.position, Quaternion.identity);
             }
+        }
+
+        if (GameManager.instance.PupCount < 3)
+        {
+            GameManager.instance.PupCount = 3;
         }
     }
 
