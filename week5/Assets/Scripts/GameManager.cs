@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     //static variable means the value is the same for all the objects of this class type and the class itself
     public static GameManager instance; //this static var will hold the Singleton
-
+    public Text pupText;
+    
     int currentLevel = 0;
 
     void Awake()
@@ -31,6 +33,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        pupText.text = "Pups: " + PlayerControl.instance.PupCount;
     }
 }

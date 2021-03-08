@@ -5,6 +5,20 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     public float forceAmount = 5;  //public var for force amount
+    private int _pupCount = 3;
+
+    public int PupCount
+    {
+        get
+        {
+            return _pupCount;
+        }
+
+        set
+        {
+            _pupCount = value;
+        }
+    }
     
     Rigidbody2D rb2D; //var for the Rigidbody2D
 
