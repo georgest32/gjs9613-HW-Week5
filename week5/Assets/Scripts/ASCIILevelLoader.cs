@@ -52,11 +52,6 @@ public class ASCIILevelLoader : MonoBehaviour
         
     }
 
-    void MakeTileMap()
-    {
-        
-    }
-    
     public void LoadLevel()
     {
         Destroy(level);
@@ -74,7 +69,7 @@ public class ASCIILevelLoader : MonoBehaviour
                 file_names[i] + ".txt";
         }
         
-        //Read text from each filepath and add it into list of strings
+        //make array of lines from each filepath and add it into list of strings
         for (int i = 0; i < current_file_paths.Length; i++)
         {
             if (i == 0)
@@ -88,7 +83,8 @@ public class ASCIILevelLoader : MonoBehaviour
         int yCellOffset = 0;
         int xCellOffset = 1;
 
-        //Add lines of text from each file into one massive string array
+        //iterate through collection of text files (which hhave been separated into lines), then go through each line
+        //to build level
         for (int i = 0; i < allFileLines.Count; i++)
         {
             int j = 0;
@@ -144,12 +140,14 @@ public class ASCIILevelLoader : MonoBehaviour
                 
                 j++;
             }
-
+            
+            
+            //every three cells, return to starting cell x-position (left side of grid)
             if (i % 3 == 0)
             {
                 yCellOffset++;
             }
-
+            
             if (xCellOffset >= 2)
             {
                 xCellOffset = -1;
@@ -158,6 +156,7 @@ public class ASCIILevelLoader : MonoBehaviour
             xCellOffset++;
         }
 
+        //randomly place pups around the level
         for (int i = 0; i < pupSpawnPoints.Length; i++)
         {
             Debug.Log(Random.Range(0, 3) == 1);
@@ -167,6 +166,7 @@ public class ASCIILevelLoader : MonoBehaviour
             }
         }
 
+        //if the player has few pups, help em out
         if (GameManager.instance.PupCount < 2)
         {
             GameManager.instance.PupCount = 2;
