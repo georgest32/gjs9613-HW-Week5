@@ -15,6 +15,7 @@ public class ASCIILevelLoader : MonoBehaviour
     public GameObject ouch;
     public GameObject goal;
     public GameObject breakable;
+    public GameObject pup;
 
     public string[] file_names;
 
@@ -23,6 +24,8 @@ public class ASCIILevelLoader : MonoBehaviour
 
     private int currentLevel;
     public GameObject level;
+
+    public GameObject[] pupSpawnPoints;
 
     public int CurrentLevel
     {
@@ -152,6 +155,15 @@ public class ASCIILevelLoader : MonoBehaviour
             }
 
             xCellOffset++;
+        }
+
+        for (int i = 0; i < pupSpawnPoints.Length; i++)
+        {
+            Debug.Log(Random.Range(0, 3) == 1);
+            if(Random.Range(0,3) == 1)
+            {
+                Instantiate<GameObject>(pup, pupSpawnPoints[i].transform.position, Quaternion.identity);
+            }
         }
     }
 
