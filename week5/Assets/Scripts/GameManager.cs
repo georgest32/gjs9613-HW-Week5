@@ -8,15 +8,17 @@ public class GameManager : MonoBehaviour
 {
     //static variable means the value is the same for all the objects of this class type and the class itself
     public static GameManager instance; //this static var will hold the Singleton
+    
+    //text components
     public Text pupText;
     public Text scoreText;
     public Text timerText;
 
     public GameObject gameOverPanel;
 
+    //timer stuff
     public float timeElapsed = 0;
-    
-    int currentLevel = 0;
+    public int timeLimit = 60;
     
     private int _score = 0;
 
@@ -68,14 +70,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeElapsed += Time.deltaTime;
+        if(!Input.GetKey(KeyCode.Tab))
+        {
+            timeElapsed += Time.deltaTime;
+        }
         
         scoreText.text = "Score: " + _score;
         pupText.text = "Pups: " + _pupCount;
-        timerText.text = (30 - (int)timeElapsed).ToString();
+        timerText.text = (timeLimit - (int)timeElapsed).ToString();
 
-        if (timeElapsed >= 30)
+        if (timeElapsed >= timeLimit)
         {
+            _score += _pupCount;
             gameOverPanel.SetActive(true);
         }
     }

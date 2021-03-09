@@ -57,7 +57,7 @@ public class ASCIILevelLoader : MonoBehaviour
         Destroy(level);
         level = new GameObject("Level");
         
-        string[] current_file_paths = new string[10];
+        string[] current_file_paths = new string[15];
         List<string[]> allFileLines = new List<string[]>();
 
         //Add all ASCII modules into filepath array
@@ -70,20 +70,20 @@ public class ASCIILevelLoader : MonoBehaviour
         }
         
         //make array of lines from each filepath and add it into list of strings
-        for (int i = 0; i < current_file_paths.Length; i++)
+        for (int i = 0; i < 10; i++)
         {
             if (i == 0)
             {
                 allFileLines.Add(File.ReadAllLines(current_file_paths[i]));
             }
-            else allFileLines.Add(File.ReadAllLines(current_file_paths[Random.Range(1, current_file_paths.Length-1)]));
+            else allFileLines.Add(File.ReadAllLines(current_file_paths[Random.Range(1, current_file_paths.Length)]));
         }
         
         string[] fileLines = new string[current_file_paths.Length];
         int yCellOffset = 0;
         int xCellOffset = 1;
 
-        //iterate through collection of text files (which hhave been separated into lines), then go through each line
+        //iterate through collection of text files (which have been separated into lines), then go through each line
         //to build level
         for (int i = 0; i < allFileLines.Count; i++)
         {
@@ -102,7 +102,7 @@ public class ASCIILevelLoader : MonoBehaviour
                 
                     switch (c)
                     {
-                        case 'p':
+                        case 'P':
                             newObj = Instantiate<GameObject>(player);
                             currentPlayer = newObj;
                             startPos = new Vector2(
@@ -120,6 +120,9 @@ public class ASCIILevelLoader : MonoBehaviour
                             break;
                         case 'b':
                             newObj = Instantiate<GameObject>(breakable);
+                            break;
+                        case 'p':
+                            newObj = Instantiate<GameObject>(pup);
                             break;
                         default:
                             newObj = null;

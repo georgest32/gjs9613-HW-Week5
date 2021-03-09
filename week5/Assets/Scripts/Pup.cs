@@ -26,6 +26,7 @@ public class Pup : MonoBehaviour
             if (GameObject.FindObjectsOfType<Pup>().Length <= 1)
             {
                 GameManager.instance.timeElapsed = 0;
+                GameManager.instance.timeLimit -= GameManager.instance.timeLimit / 6;
                 GameManager.instance.Score += GameManager.instance.PupCount;
                 GameManager.instance.GetComponent<ASCIILevelLoader>().LoadLevel();
             }
