@@ -8,6 +8,8 @@ public class PlayerControl : MonoBehaviour
     public float forceAmount = 10;  //public var for force amount
     public bool moveable;
 
+    public GameObject targetBreakable;
+
     Rigidbody2D rb2D; //var for the Rigidbody2D
 
     //static variable means the value is the same for all the objects of this class type and the class itself
@@ -24,7 +26,7 @@ public class PlayerControl : MonoBehaviour
         }
         else //if the instance is already set to an object
         {
-            //Destroy(gameObject);  //destroy this new object, so there is only ever one
+            Destroy(gameObject);  //destroy this new object, so there is only ever one
         }
     }
 
@@ -62,7 +64,20 @@ public class PlayerControl : MonoBehaviour
         {
             rb2D.velocity = Vector2.zero;
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("TB null is " + targetBreakable);
+            Debug.Log(GameManager.instance.PupCount);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && GameManager.instance.PupCount > 0 && targetBreakable != null)
+        {
+            Debug.Log("boom");
+            GameManager.instance.PupCount--;
+            Destroy(targetBreakable);
+        }
+
         //show map view and return to normal
         if (Input.GetKey(KeyCode.Tab))
         {

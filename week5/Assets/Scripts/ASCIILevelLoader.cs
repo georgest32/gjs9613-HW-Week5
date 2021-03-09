@@ -131,13 +131,12 @@ public class ASCIILevelLoader : MonoBehaviour
                 
                     if (newObj != null)
                     {
-                        if (newObj.gameObject.name != "Player")
+                        if (newObj.gameObject.name != "Player(Clone)")
                         {
-                            
+                            newObj.transform.parent = level.transform;
+                            newObj.transform.position = new Vector3(x + (xCellOffset * 13), -y - (yCellOffset * 13), 0);
                         }
-                        
-                        newObj.transform.parent = level.transform;
-                        newObj.transform.position = new Vector3(x + (xCellOffset * 13), -y - (yCellOffset * 13), 0);
+                        else newObj.transform.position = new Vector2(19, -5.8f);
                     }
                 }
                 
@@ -162,7 +161,6 @@ public class ASCIILevelLoader : MonoBehaviour
         //randomly place pups around the level
         for (int i = 0; i < pupSpawnPoints.Length; i++)
         {
-            Debug.Log(Random.Range(0, 3) == 1);
             if(Random.Range(0,3) == 1)
             {
                 Instantiate<GameObject>(pup, pupSpawnPoints[i].transform.position, Quaternion.identity);

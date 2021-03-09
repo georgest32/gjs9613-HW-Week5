@@ -22,17 +22,20 @@ public class Breakable : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GetComponent<SpriteRenderer>().color = Color.cyan;
+
+            PlayerControl.instance.targetBreakable = gameObject;
             
-            if (Input.GetKeyDown(KeyCode.Space) && GameManager.instance.PupCount > 0)
-            {
-                GameManager.instance.PupCount--;
-                Destroy(gameObject);
-            }
+            //if (Input.GetKeyDown(KeyCode.Space) && GameManager.instance.PupCount > 0)
+            //{
+            //    GameManager.instance.PupCount--;
+            //    Destroy(gameObject);
+            //}
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         GetComponent<SpriteRenderer>().color = new Color32(142, 89, 60, 255);
+        PlayerControl.instance.targetBreakable = null;
     }
 }
